@@ -1,0 +1,315 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="file://Report.xsd"
+           xmlns:r="file://Report.xsd"
+           elementFormDefault="qualified">
+
+    <xs:simpleType name="stringType">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="70"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="theoryTaskType">
+
+        <xs:attribute name="type">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="theory"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+
+        <xs:attribute name="name" type="r:stringType"/>
+
+        <xs:attribute name="period" type="xs:nonNegativeInteger"/>
+
+        <xs:attribute name="mark" use="optional">
+            <xs:simpleType>
+                <xs:restriction base="xs:int">
+                    <xs:enumeration value="0"/>
+                    <xs:enumeration value="1"/>
+                    <xs:enumeration value="2"/>
+                    <xs:enumeration value="3"/>
+                    <xs:enumeration value="4"/>
+                    <xs:enumeration value="5"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+
+        <xs:attribute name="status" default="Изучение не началось">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="Изучение не началось"/>
+                    <xs:enumeration value="В процессе изучения"/>
+                    <xs:enumeration value="Изучение завершено"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="practiceTaskType">
+
+        <xs:attribute name="type">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="practice"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+
+        <xs:attribute name="name" type="r:stringType"/>
+
+        <xs:attribute name="period" type="xs:nonNegativeInteger"/>
+
+        <xs:attribute name="mark" use="optional">
+            <xs:simpleType>
+                <xs:restriction base="xs:int">
+                    <xs:enumeration value="0"/>
+                    <xs:enumeration value="1"/>
+                    <xs:enumeration value="2"/>
+                    <xs:enumeration value="3"/>
+                    <xs:enumeration value="4"/>
+                    <xs:enumeration value="5"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+
+        <xs:attribute name="status" default="Выполнение не началось">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="Выполнение не началось"/>
+                    <xs:enumeration value="В процессе выполнения"/>
+                    <xs:enumeration value="Находится на проверке"/>
+                    <xs:enumeration value="Задание выполнено"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+
+    </xs:complexType>
+
+    <xs:complexType name="descriptionStudentType">
+
+        <xs:attribute name="fullname" type="r:stringType"/>
+        
+        <xs:attribute name="city" type="r:stringType"/>
+        
+        <xs:attribute name="e-mail">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:pattern value=".{8}@.{8}\..{3}" />
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        
+        <xs:attribute name="dateStart" type="xs:date"/>
+        
+        <xs:attribute name="signContract">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="sign"/>
+                    <xs:enumeration value="non-sign"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="taskType">
+        <xs:choice>
+            <xs:element name="theoryTask" type="r:theoryTaskType"/>
+            <xs:element name="practiceTask" type="r:practiceTaskType"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:complexType name="listTasksType">
+        <xs:sequence>
+            <xs:element name="task" type="r:taskType" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="descriptionCourseType">
+
+        <xs:sequence>
+
+            <xs:element name="task" type="r:taskType" maxOccurs="unbounded"/>
+
+        </xs:sequence>
+
+        <xs:attribute name="name" type="r:stringType"/>
+
+        <xs:attribute name="author" type="r:stringType"/>
+
+        <xs:attribute name="dateCreate" type="xs:date"/>
+
+    </xs:complexType>
+    
+    <xs:complexType name="listCoursesType">
+        <xs:sequence>
+            <xs:element name="course" type="r:descriptionCourseType" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="descriptionProgramType">
+
+        <xs:sequence>
+
+            <xs:element name="listCourses" type="r:listCoursesType">
+
+                <!-- Unique description list programs-->
+                <xs:unique name="rule5">
+                    <xs:selector xpath="r:course"/>
+                    <xs:field xpath="@name"/>
+                </xs:unique>
+
+            </xs:element>
+
+        </xs:sequence>
+
+        <xs:attribute name="name" type="r:stringType"/>
+
+        <xs:attribute name="author" type="r:stringType"/>
+
+        <xs:attribute name="dateCreate" type="xs:date"/>
+
+    </xs:complexType>
+
+    <xs:complexType name="listProgramsType">
+        <xs:sequence>
+            <xs:element name="program" type="r:descriptionProgramType" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="studentType">
+        <xs:sequence>
+            <xs:element name="descriptionStudent" type="r:descriptionStudentType"/>
+            <xs:element name="descriptionProgramStudent" type="r:descriptionProgramType"/>
+
+            <xs:element name="allTasksStudent">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="task" type="r:taskType" maxOccurs="unbounded" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="planCourse" type="r:listCoursesType">
+
+                <!-- Unique courses in listPlaneCourses of Student-->
+                <xs:unique name="rule6">
+                    <xs:selector xpath="r:course"/>
+                    <xs:field xpath="@name"/>
+                    <xs:field xpath="@name"/>
+                </xs:unique>
+
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="listStudentsType">
+        <xs:sequence>
+            <xs:element name="student" type="r:studentType" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="reportType">
+        <xs:sequence>
+
+            <xs:element name="listTasks" type="r:listTasksType"/>
+
+            <xs:element name="listCourses" type="r:listCoursesType"/>
+
+            <xs:element name="listPrograms" type="r:listProgramsType"/>
+
+            <xs:element name="listStudents" type="r:listStudentsType"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:element name="report" type="r:reportType">
+
+        <!-- Unique students-->
+        <xs:unique name="rule1">
+            <xs:selector xpath="r:listStudents/r:student/r:descriptionStudent"/>
+            <xs:field xpath="@fullname"/>
+            <xs:field xpath="@city"/>
+            <xs:field xpath="@e-mail"/>
+            <xs:field xpath="@dateStart"/>
+        </xs:unique>
+
+        <!-- Unique complited  theory tasks-->
+        <xs:unique name="rule2">
+            <xs:selector xpath="r:listStudents/r:student/r:allTasksStudent/r:task"/>
+            <xs:field xpath="r:theoryTask/@name"/>
+            <xs:field xpath="r:theoryTask/@period"/>
+        </xs:unique>
+
+        <!-- Unique complited practice tasks-->
+        <xs:unique name="rule3">
+            <xs:selector xpath="r:listStudents/r:student/r:allTasksStudent/r:task"/>
+            <xs:field xpath="r:practiceTask/@name"/>
+            <xs:field xpath="r:practiceTask/@period"/>
+        </xs:unique>
+
+        <!-- Unique description list courses-->
+        <xs:unique name="rule4">
+            <xs:selector xpath="r:listCourses/r:course"/>
+            <xs:field xpath="@name"/>
+        </xs:unique>
+
+        <!-- key and keyref for listCourses of programs-->
+        <xs:keyref name="rkey1" refer="r:key1">
+            <xs:selector xpath="r:listPrograms/r:program/r:listCourses/r:course"/>
+            <xs:field xpath="@name"/>
+        </xs:keyref>
+
+        <xs:key name="key1">
+            <xs:selector xpath="r:listCourses/r:course"/>
+            <xs:field xpath="@name"/>
+        </xs:key>
+
+        <xs:keyref name="rkey2CourseName" refer="r:key2CourseName">
+            <xs:selector xpath="r:listStudents/r:student/r:descriptionProgramStudent/r:listCourses/r:course"/>
+            <xs:field xpath="@name"/>
+        </xs:keyref>
+
+        <xs:key name="key2CourseName">
+            <xs:selector xpath="r:listCourses/r:course"/>
+            <xs:field xpath="@name"/>
+        </xs:key>
+
+        <xs:keyref name="rkey3" refer="r:key3">
+            <xs:selector xpath="r:listStudents/r:student/r:allTaskStudents/r:task/r:theoryTask"/>
+            <xs:field xpath="@name"/>
+            <xs:field xpath="@period"/>
+        </xs:keyref>
+
+        <xs:keyref name="rkey4" refer="r:key4">
+            <xs:selector xpath="r:listStudents/r:student/r:allTaskStudents/r:task/r:practiceTask"/>
+            <xs:field xpath="@name"/>
+            <xs:field xpath="@period"/>
+        </xs:keyref>
+
+        <xs:key name="key3">
+            <xs:selector xpath="r:listTasks/r:task/r:theoryTask"/>
+            <xs:field xpath="@name"/>
+            <xs:field xpath="@period"/>
+        </xs:key>
+
+        <xs:key name="key4">
+            <xs:selector xpath="r:listTasks/r:task/r:practiceTask"/>
+            <xs:field xpath="@name"/>
+            <xs:field xpath="@period"/>
+        </xs:key>
+
+        <xs:keyref name="rkey5" refer="r:key5">
+            <xs:selector xpath="r:listStudents/r:student/r:planeCourse"/>
+            <xs:field xpath="@name"/>
+        </xs:keyref>
+
+        <xs:key name="key5">
+            <xs:selector xpath="r:listStudents/r:descriptionProgramStudent/r:listCourses/r:course"/>
+            <xs:field xpath="@name"/>
+        </xs:key>
+
+    </xs:element>
+    
+</xs:schema>

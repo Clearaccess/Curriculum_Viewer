@@ -1,0 +1,741 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xmlns="file://Report.xsd"
+               xsi:noNamespaceSchemaLocation="Report.xsd">
+
+    <listTasks>
+        <task>
+            <theoryTask type="theory" name="Overview of Eclipse IDE" period="4"/>
+        </task>
+        <task>
+            <theoryTask type="theory" name="Learning the Java Language Basics" period="12"/>
+        </task>
+        <task>
+            <practiceTask type="practice" name="Practical Task" period="4"/>
+        </task>
+        <task>
+            <theoryTask type="theory" name="Learning the Java Language advanced features " period="17"/>
+        </task>
+        <task>
+            <practiceTask type="practice" name="Practical Task" period="16"/>
+        </task>
+        <task>
+            <theoryTask type="theory" name="Learning XML Language" period="6"/>
+        </task>
+        <task>
+            <practiceTask type="practice" name="Practical Task" period="8"/>
+        </task>
+        <task>
+            <theoryTask type="theory" name="Learning XSLT and XPath Basics" period="14"/>
+        </task>
+        <task>
+            <theoryTask type="theory" name="Equipment Stylesheets" period="8"/>
+        </task>
+        <task>
+            <theoryTask type="theory" name="Struts Framework Fundamentals" period="8"/>
+        </task>
+
+        <task>
+            <practiceTask type="practice" name="Struts Framework Task" period="40"/>
+        </task>
+        <task>
+            <practiceTask type="practice" name="Java Message Service Task" period="20"/>
+        </task>
+        <task>
+            <theoryTask type="theory" name="Mastering Microsoft Project" period="3"/>
+        </task>
+        <task>
+            <practiceTask type="practice" name="MS Project Practical Task" period="8"/>
+        </task>
+        <task>
+            <theoryTask type="theory" name="Software development process. Development team and its structure" period="12"/>
+        </task>
+        <task>
+            <practiceTask type="practice" name="Team Project" period="80"/>
+        </task>
+    </listTasks>
+
+    <listCourses>
+        <course name='Курс "Overview of Eclipse IDE"' author="author1" dateCreate="2016-12-12">
+            <task>
+                <theoryTask type="theory" name="Overview of Eclipse IDE" period="4"/>
+            </task>
+        </course>
+
+        <course name='Курс "Основы языка Java"' author="author2" dateCreate="2016-12-12">
+            <task>
+                <theoryTask type="theory" name="Learning the Java Language Basics" period="12"/>
+            </task>
+            <task>
+                <practiceTask type="practice" name="Practical Task" period="4"/>
+            </task>
+        </course>
+
+        <course name='Курс "Язык Java - расширенные возможности"' author="author1" dateCreate="2016-12-12">
+            <task>
+                <theoryTask type="theory" name="Learning the Java Language advanced features " period="17"/>
+            </task>
+            <task>
+                <practiceTask type="practice" name="Practical Task" period="16"/>
+            </task>
+        </course>
+
+        <course name='Курс "Язык XML"' author="author2" dateCreate="2016-12-12">
+            <task>
+                <theoryTask type="theory" name="Learning XML Language" period="6"/>
+            </task>
+            <task>
+                <practiceTask type="practice" name="Practical Task" period="8"/>
+            </task>
+        </course>
+
+        <course name='Курс "Язык XSLT и XPath"' author="author1" dateCreate="2016-12-12">
+            <task>
+                <theoryTask type="theory" name="Learning XSLT and XPath Basics" period="14"/>
+            </task>
+            <task>
+                <theoryTask type="theory" name="Equipment Stylesheets" period="8"/>
+            </task>
+        </course>
+
+        <course name='Курс "Технология Struts Framework"' author="author2" dateCreate="2016-12-12">
+            <task>
+                <theoryTask type="theory" name="Struts Framework Fundamentals" period="8"/>
+            </task>
+
+            <task>
+                <practiceTask type="practice" name="Struts Framework Task" period="40"/>
+            </task>
+            <task>
+                <practiceTask type="practice" name="Java Message Service Task" period="20"/>
+            </task>
+        </course>
+
+        <course name='Курс "Процесс производства программного обеспечения"' author="author1" dateCreate="2016-12-12">
+            <task>
+                <theoryTask type="theory" name="Mastering Microsoft Project" period="3"/>
+            </task>
+            <task>
+                <practiceTask type="practice" name="MS Project Practical Task" period="8"/>
+            </task>
+            <task>
+                <theoryTask type="theory" name="Software development process. Development team and its structure" period="12"/>
+            </task>
+        </course>
+
+        <course name='Курс "Процесс разработки программного обеспечения"' author="author2" dateCreate="2016-12-12">
+            <task>
+                <practiceTask type="practice" name="Team Project" period="80"/>
+            </task>
+        </course>
+
+    </listCourses>
+    
+    <listPrograms>
+        <program name="Полная программа" author="author1" dateCreate="2016-12-12">
+            <listCourses>
+                <course name='Курс "Overview of Eclipse IDE"' author="author1" dateCreate="2016-12-12">
+                    <task>
+                        <theoryTask type="theory" name="Overview of Eclipse IDE" period="4"/>
+                    </task>
+                </course>
+
+                <course name='Курс "Основы языка Java"' author="author2" dateCreate="2016-12-12">
+                    <task>
+                        <theoryTask type="theory" name="Learning the Java Language Basics" period="12"/>
+                    </task>
+                    <task>
+                        <practiceTask type="practice" name="Practical Task" period="4"/>
+                    </task>
+                </course>
+
+                <course name='Курс "Язык Java - расширенные возможности"' author="author1" dateCreate="2016-12-12">
+                    <task>
+                        <theoryTask type="theory" name="Learning the Java Language advanced features " period="17"/>
+                    </task>
+                    <task>
+                        <practiceTask type="practice" name="Practical Task" period="16"/>
+                    </task>
+                </course>
+
+                <course name='Курс "Язык XML"' author="author2" dateCreate="2016-12-12">
+                    <task>
+                        <theoryTask type="theory" name="Learning XML Language" period="6"/>
+                    </task>
+                    <task>
+                        <practiceTask type="practice" name="Practical Task" period="8"/>
+                    </task>
+                </course>
+
+                <course name='Курс "Язык XSLT и XPath"' author="author1" dateCreate="2016-12-12">
+                    <task>
+                        <theoryTask type="theory" name="Learning XSLT and XPath Basics" period="14"/>
+                    </task>
+                    <task>
+                        <theoryTask type="theory" name="Equipment Stylesheets" period="8"/>
+                    </task>
+                </course>
+
+                <course name='Курс "Технология Struts Framework"' author="author2" dateCreate="2016-12-12">
+                    <task>
+                        <theoryTask type="theory" name="Struts Framework Fundamentals" period="8"/>
+                    </task>
+
+                    <task>
+                        <practiceTask type="practice" name="Struts Framework Task" period="40"/>
+                    </task>
+                    <task>
+                        <practiceTask type="practice" name="Java Message Service Task" period="20"/>
+                    </task>
+                </course>
+
+                <course name='Курс "Процесс производства программного обеспечения"' author="author1" dateCreate="2016-12-12">
+                    <task>
+                        <theoryTask type="theory" name="Mastering Microsoft Project" period="3"/>
+                    </task>
+                    <task>
+                        <practiceTask type="practice" name="MS Project Practical Task" period="8"/>
+                    </task>
+                    <task>
+                        <theoryTask type="theory" name="Software development process. Development team and its structure" period="12"/>
+                    </task>
+                </course>
+
+                <course name='Курс "Процесс разработки программного обеспечения"' author="author2" dateCreate="2016-12-12">
+                    <task>
+                        <practiceTask type="practice" name="Team Project" period="80"/>
+                    </task>
+                </course>
+            </listCourses>
+        </program>
+
+        <program name="Укороченная программа" author="author2" dateCreate="2016-12-12">
+            <listCourses>
+                <course name='Курс "Overview of Eclipse IDE"' author="author1" dateCreate="2016-12-12">
+                    <task>
+                        <theoryTask type="theory" name="Overview of Eclipse IDE" period="4"/>
+                    </task>
+                </course>
+
+                <course name='Курс "Основы языка Java"' author="author2" dateCreate="2016-12-12">
+                    <task>
+                        <theoryTask type="theory" name="Learning the Java Language Basics" period="12"/>
+                    </task>
+                    <task>
+                        <practiceTask type="practice" name="Practical Task" period="4"/>
+                    </task>
+                </course>
+
+                <course name='Курс "Язык Java - расширенные возможности"' author="author1" dateCreate="2016-12-12">
+                    <task>
+                        <theoryTask type="theory" name="Learning the Java Language advanced features " period="17"/>
+                    </task>
+                    <task>
+                        <practiceTask type="practice" name="Practical Task" period="16"/>
+                    </task>
+                </course>
+
+                <course name='Курс "Процесс производства программного обеспечения"' author="author1" dateCreate="2016-12-12">
+                    <task>
+                        <theoryTask type="theory" name="Mastering Microsoft Project" period="3"/>
+                    </task>
+                    <task>
+                        <practiceTask type="practice" name="MS Project Practical Task" period="8"/>
+                    </task>
+                    <task>
+                        <theoryTask type="theory" name="Software development process. Development team and its structure" period="12"/>
+                    </task>
+                </course>
+
+                <course name='Курс "Процесс разработки программного обеспечения"' author="author2" dateCreate="2016-12-12">
+                    <task>
+                        <practiceTask type="practice" name="Team Project" period="80"/>
+                    </task>
+                </course>
+            </listCourses>
+
+        </program>
+
+        <program name="Специальная программа 1" author="author3" dateCreate="2016-12-12">
+            <listCourses>
+                <course name='Курс "Язык XML"' author="author2" dateCreate="2016-12-12">
+                    <task>
+                        <theoryTask type="theory" name="Learning XML Language" period="6"/>
+                    </task>
+                    <task>
+                        <practiceTask type="practice" name="Practical Task" period="8"/>
+                    </task>
+                </course>
+
+                <course name='Курс "Язык XSLT и XPath"' author="author1" dateCreate="2016-12-12">
+                    <task>
+                        <theoryTask type="theory" name="Learning XSLT and XPath Basics" period="14"/>
+                    </task>
+                    <task>
+                        <theoryTask type="theory" name="Equipment Stylesheets" period="8"/>
+                    </task>
+                </course>
+            </listCourses>
+        </program>
+    </listPrograms>
+    
+    <listStudents>
+        <student>
+            <descriptionStudent fullname="Alexander Sergeev" city="Saratov" e-mail="12345678@12345678.123" dateStart="2016-12-01" signContract="non-sign"/>
+                <descriptionProgramStudent name="Полная программа" author="author1" dateCreate="2016-12-12">
+                    <listCourses>
+                        <course name='Курс "Overview of Eclipse IDE"' author="author1" dateCreate="2016-12-12">
+                            <task>
+                                <theoryTask type="theory" name="Overview of Eclipse IDE" period="4"/>
+                            </task>
+                        </course>
+
+                        <course name='Курс "Основы языка Java"' author="author2" dateCreate="2016-12-12">
+                            <task>
+                                <theoryTask type="theory" name="Learning the Java Language Basics" period="12"/>
+                            </task>
+                            <task>
+                                <practiceTask type="practice" name="Practical Task" period="4"/>
+                            </task>
+                        </course>
+
+                        <course name='Курс "Язык Java - расширенные возможности"' author="author1" dateCreate="2016-12-12">
+                            <task>
+                                <theoryTask type="theory" name="Learning the Java Language advanced features " period="17"/>
+                            </task>
+                            <task>
+                                <practiceTask type="practice" name="Practical Task" period="16"/>
+                            </task>
+                        </course>
+
+                        <course name='Курс "Язык XML"' author="author2" dateCreate="2016-12-12">
+                            <task>
+                                <theoryTask type="theory" name="Learning XML Language" period="6"/>
+                            </task>
+                            <task>
+                                <practiceTask type="practice" name="Practical Task" period="8"/>
+                            </task>
+                        </course>
+
+                        <course name='Курс "Язык XSLT и XPath"' author="author1" dateCreate="2016-12-12">
+                            <task>
+                                <theoryTask type="theory" name="Learning XSLT and XPath Basics" period="14"/>
+                            </task>
+                            <task>
+                                <theoryTask type="theory" name="Equipment Stylesheets" period="8"/>
+                            </task>
+                        </course>
+
+                        <course name='Курс "Технология Struts Framework"' author="author2" dateCreate="2016-12-12">
+                            <task>
+                                <theoryTask type="theory" name="Struts Framework Fundamentals" period="8"/>
+                            </task>
+
+                            <task>
+                                <practiceTask type="practice" name="Struts Framework Task" period="40"/>
+                            </task>
+                            <task>
+                                <practiceTask type="practice" name="Java Message Service Task" period="20"/>
+                            </task>
+                        </course>
+
+                        <course name='Курс "Процесс производства программного обеспечения"' author="author1" dateCreate="2016-12-12">
+                            <task>
+                                <theoryTask type="theory" name="Mastering Microsoft Project" period="3"/>
+                            </task>
+                            <task>
+                                <practiceTask type="practice" name="MS Project Practical Task" period="8"/>
+                            </task>
+                            <task>
+                                <theoryTask type="theory" name="Software development process. Development team and its structure" period="12"/>
+                            </task>
+                        </course>
+
+                        <course name='Курс "Процесс разработки программного обеспечения"' author="author2" dateCreate="2016-12-12">
+                            <task>
+                                <practiceTask type="practice" name="Team Project" period="80"/>
+                            </task>
+                        </course>
+                    </listCourses>
+                </descriptionProgramStudent>
+            <allTasksStudent>
+            </allTasksStudent>
+            <planCourse>
+                <course name='Курс "Overview of Eclipse IDE"' author="author1" dateCreate="2016-12-12">
+                    <task>
+                        <theoryTask type="theory" name="Overview of Eclipse IDE" period="4"/>
+                    </task>
+                </course>
+
+                <course name='Курс "Основы языка Java"' author="author2" dateCreate="2016-12-12">
+                    <task>
+                        <theoryTask type="theory" name="Learning the Java Language Basics" period="12"/>
+                    </task>
+                    <task>
+                        <practiceTask type="practice" name="Practical Task" period="4"/>
+                    </task>
+                </course>
+
+                <course name='Курс "Язык Java - расширенные возможности"' author="author1" dateCreate="2016-12-12">
+                    <task>
+                        <theoryTask type="theory" name="Learning the Java Language advanced features " period="17"/>
+                    </task>
+                    <task>
+                        <practiceTask type="practice" name="Practical Task" period="16"/>
+                    </task>
+                </course>
+
+                <course name='Курс "Язык XML"' author="author2" dateCreate="2016-12-12">
+                    <task>
+                        <theoryTask type="theory" name="Learning XML Language" period="6"/>
+                    </task>
+                    <task>
+                        <practiceTask type="practice" name="Practical Task" period="8"/>
+                    </task>
+                </course>
+
+                <course name='Курс "Язык XSLT и XPath"' author="author1" dateCreate="2016-12-12">
+                    <task>
+                        <theoryTask type="theory" name="Learning XSLT and XPath Basics" period="14"/>
+                    </task>
+                    <task>
+                        <theoryTask type="theory" name="Equipment Stylesheets" period="8"/>
+                    </task>
+                </course>
+
+                <course name='Курс "Технология Struts Framework"' author="author2" dateCreate="2016-12-12">
+                    <task>
+                        <theoryTask type="theory" name="Struts Framework Fundamentals" period="8"/>
+                    </task>
+
+                    <task>
+                        <practiceTask type="practice" name="Struts Framework Task" period="40"/>
+                    </task>
+                    <task>
+                        <practiceTask type="practice" name="Java Message Service Task" period="20"/>
+                    </task>
+                </course>
+
+                <course name='Курс "Процесс производства программного обеспечения"' author="author1" dateCreate="2016-12-12">
+                    <task>
+                        <theoryTask type="theory" name="Mastering Microsoft Project" period="3"/>
+                    </task>
+                    <task>
+                        <practiceTask type="practice" name="MS Project Practical Task" period="8"/>
+                    </task>
+                    <task>
+                        <theoryTask type="theory" name="Software development process. Development team and its structure" period="12"/>
+                    </task>
+                </course>
+
+                <course name='Курс "Процесс разработки программного обеспечения"' author="author2" dateCreate="2016-12-12">
+                    <task>
+                        <practiceTask type="practice" name="Team Project" period="80"/>
+                    </task>
+                </course>
+            </planCourse>
+        </student>
+
+        <student>
+            <descriptionStudent fullname="Boris Romanov" city="Saratov" e-mail="12345678@12345678.123" dateStart="2016-12-01" signContract="non-sign"/>
+            <descriptionProgramStudent name="Полная программа" author="author1" dateCreate="2016-12-12">
+                <listCourses>
+                    <course name='Курс "Overview of Eclipse IDE"' author="author1" dateCreate="2016-12-12">
+                        <task>
+                            <theoryTask type="theory" name="Overview of Eclipse IDE" period="4"/>
+                        </task>
+                    </course>
+
+                    <course name='Курс "Основы языка Java"' author="author2" dateCreate="2016-12-12">
+                        <task>
+                            <theoryTask type="theory" name="Learning the Java Language Basics" period="12"/>
+                        </task>
+                        <task>
+                            <practiceTask type="practice" name="Practical Task" period="4"/>
+                        </task>
+                    </course>
+
+                    <course name='Курс "Язык Java - расширенные возможности"' author="author1" dateCreate="2016-12-12">
+                        <task>
+                            <theoryTask type="theory" name="Learning the Java Language advanced features " period="17"/>
+                        </task>
+                        <task>
+                            <practiceTask type="practice" name="Practical Task" period="16"/>
+                        </task>
+                    </course>
+
+                    <course name='Курс "Язык XML"' author="author2" dateCreate="2016-12-12">
+                        <task>
+                            <theoryTask type="theory" name="Learning XML Language" period="6"/>
+                        </task>
+                        <task>
+                            <practiceTask type="practice" name="Practical Task" period="8"/>
+                        </task>
+                    </course>
+
+                    <course name='Курс "Язык XSLT и XPath"' author="author1" dateCreate="2016-12-12">
+                        <task>
+                            <theoryTask type="theory" name="Learning XSLT and XPath Basics" period="14"/>
+                        </task>
+                        <task>
+                            <theoryTask type="theory" name="Equipment Stylesheets" period="8"/>
+                        </task>
+                    </course>
+
+                    <course name='Курс "Технология Struts Framework"' author="author2" dateCreate="2016-12-12">
+                        <task>
+                            <theoryTask type="theory" name="Struts Framework Fundamentals" period="8"/>
+                        </task>
+
+                        <task>
+                            <practiceTask type="practice" name="Struts Framework Task" period="40"/>
+                        </task>
+                        <task>
+                            <practiceTask type="practice" name="Java Message Service Task" period="20"/>
+                        </task>
+                    </course>
+
+                    <course name='Курс "Процесс производства программного обеспечения"' author="author1" dateCreate="2016-12-12">
+                        <task>
+                            <theoryTask type="theory" name="Mastering Microsoft Project" period="3"/>
+                        </task>
+                        <task>
+                            <practiceTask type="practice" name="MS Project Practical Task" period="8"/>
+                        </task>
+                        <task>
+                            <theoryTask type="theory" name="Software development process. Development team and its structure" period="12"/>
+                        </task>
+                    </course>
+
+                    <course name='Курс "Процесс разработки программного обеспечения"' author="author2" dateCreate="2016-12-12">
+                        <task>
+                            <practiceTask type="practice" name="Team Project" period="80"/>
+                        </task>
+                    </course>
+                </listCourses>
+            </descriptionProgramStudent>
+            <allTasksStudent>
+            </allTasksStudent>
+            <planCourse>
+                <course name='Курс "Overview of Eclipse IDE"' author="author1" dateCreate="2016-12-12">
+                    <task>
+                        <theoryTask type="theory" name="Overview of Eclipse IDE" period="4"/>
+                    </task>
+                </course>
+
+                <course name='Курс "Основы языка Java"' author="author2" dateCreate="2016-12-12">
+                    <task>
+                        <theoryTask type="theory" name="Learning the Java Language Basics" period="12"/>
+                    </task>
+                    <task>
+                        <practiceTask type="practice" name="Practical Task" period="4"/>
+                    </task>
+                </course>
+
+                <course name='Курс "Язык Java - расширенные возможности"' author="author1" dateCreate="2016-12-12">
+                    <task>
+                        <theoryTask type="theory" name="Learning the Java Language advanced features " period="17"/>
+                    </task>
+                    <task>
+                        <practiceTask type="practice" name="Practical Task" period="16"/>
+                    </task>
+                </course>
+
+                <course name='Курс "Язык XML"' author="author2" dateCreate="2016-12-12">
+                    <task>
+                        <theoryTask type="theory" name="Learning XML Language" period="6"/>
+                    </task>
+                    <task>
+                        <practiceTask type="practice" name="Practical Task" period="8"/>
+                    </task>
+                </course>
+
+                <course name='Курс "Язык XSLT и XPath"' author="author1" dateCreate="2016-12-12">
+                    <task>
+                        <theoryTask type="theory" name="Learning XSLT and XPath Basics" period="14"/>
+                    </task>
+                    <task>
+                        <theoryTask type="theory" name="Equipment Stylesheets" period="8"/>
+                    </task>
+                </course>
+
+                <course name='Курс "Технология Struts Framework"' author="author2" dateCreate="2016-12-12">
+                    <task>
+                        <theoryTask type="theory" name="Struts Framework Fundamentals" period="8"/>
+                    </task>
+
+                    <task>
+                        <practiceTask type="practice" name="Struts Framework Task" period="40"/>
+                    </task>
+                    <task>
+                        <practiceTask type="practice" name="Java Message Service Task" period="20"/>
+                    </task>
+                </course>
+
+                <course name='Курс "Процесс производства программного обеспечения"' author="author1" dateCreate="2016-12-12">
+                    <task>
+                        <theoryTask type="theory" name="Mastering Microsoft Project" period="3"/>
+                    </task>
+                    <task>
+                        <practiceTask type="practice" name="MS Project Practical Task" period="8"/>
+                    </task>
+                    <task>
+                        <theoryTask type="theory" name="Software development process. Development team and its structure" period="12"/>
+                    </task>
+                </course>
+
+                <course name='Курс "Процесс разработки программного обеспечения"' author="author2" dateCreate="2016-12-12">
+                    <task>
+                        <practiceTask type="practice" name="Team Project" period="80"/>
+                    </task>
+                </course>
+            </planCourse>
+        </student>
+
+        <student>
+            <descriptionStudent fullname="Vadim Petrov" city="Saratov" e-mail="12345678@12345678.123" dateStart="2016-12-01" signContract="non-sign"/>
+            <descriptionProgramStudent name="Специальная программа 1" author="author3" dateCreate="2016-12-12">
+                <listCourses>
+                    <course name='Курс "Язык XML"' author="author2" dateCreate="2016-12-12">
+                        <task>
+                            <theoryTask type="theory" name="Learning XML Language" period="6"/>
+                        </task>
+                        <task>
+                            <practiceTask type="practice" name="Practical Task" period="8"/>
+                        </task>
+                    </course>
+
+                    <course name='Курс "Язык XSLT и XPath"' author="author1" dateCreate="2016-12-12">
+                        <task>
+                            <theoryTask type="theory" name="Learning XSLT and XPath Basics" period="14"/>
+                        </task>
+                        <task>
+                            <theoryTask type="theory" name="Equipment Stylesheets" period="8"/>
+                        </task>
+                    </course>
+                </listCourses>
+            </descriptionProgramStudent>
+            <allTasksStudent>
+            </allTasksStudent>
+            <planCourse>
+                <course name='Курс "Язык XML"' author="author2" dateCreate="2016-12-12">
+                    <task>
+                        <theoryTask type="theory" name="Learning XML Language" period="6"/>
+                    </task>
+                    <task>
+                        <practiceTask type="practice" name="Practical Task" period="8"/>
+                    </task>
+                </course>
+
+                <course name='Курс "Язык XSLT и XPath"' author="author1" dateCreate="2016-12-12">
+                    <task>
+                        <theoryTask type="theory" name="Learning XSLT and XPath Basics" period="14"/>
+                    </task>
+                    <task>
+                        <theoryTask type="theory" name="Equipment Stylesheets" period="8"/>
+                    </task>
+                </course>
+            </planCourse>
+        </student>
+
+        <student>
+            <descriptionStudent fullname="Ivan Fedorov" city="Saratov" e-mail="12345678@12345678.123" dateStart="2016-12-01" signContract="non-sign"/>
+            <descriptionProgramStudent name="Укороченная программа" author="author2" dateCreate="2016-12-12">
+                <listCourses>
+                    <course name='Курс "Overview of Eclipse IDE"' author="author1" dateCreate="2016-12-12">
+                        <task>
+                            <theoryTask type="theory" name="Overview of Eclipse IDE" period="4"/>
+                        </task>
+                    </course>
+
+                    <course name='Курс "Основы языка Java"' author="author2" dateCreate="2016-12-12">
+                        <task>
+                            <theoryTask type="theory" name="Learning the Java Language Basics" period="12"/>
+                        </task>
+                        <task>
+                            <practiceTask type="practice" name="Practical Task" period="4"/>
+                        </task>
+                    </course>
+
+                    <course name='Курс "Язык Java - расширенные возможности"' author="author1" dateCreate="2016-12-12">
+                        <task>
+                            <theoryTask type="theory" name="Learning the Java Language advanced features " period="17"/>
+                        </task>
+                        <task>
+                            <practiceTask type="practice" name="Practical Task" period="16"/>
+                        </task>
+                    </course>
+
+                    <course name='Курс "Процесс производства программного обеспечения"' author="author1" dateCreate="2016-12-12">
+                        <task>
+                            <theoryTask type="theory" name="Mastering Microsoft Project" period="3"/>
+                        </task>
+                        <task>
+                            <practiceTask type="practice" name="MS Project Practical Task" period="8"/>
+                        </task>
+                        <task>
+                            <theoryTask type="theory" name="Software development process. Development team and its structure" period="12"/>
+                        </task>
+                    </course>
+
+                    <course name='Курс "Процесс разработки программного обеспечения"' author="author2" dateCreate="2016-12-12">
+                        <task>
+                            <practiceTask type="practice" name="Team Project" period="80"/>
+                        </task>
+                    </course>
+                </listCourses>
+            </descriptionProgramStudent>
+            <allTasksStudent>
+                <task>
+                    <theoryTask type="theory" name="Overview of Eclipse IDE" period="4"/>
+                </task>
+                <task>
+                    <practiceTask type="practice" name="Practical Task" period="4"/>
+                </task>
+            </allTasksStudent>
+            <planCourse>
+                <course name='Курс "Overview of Eclipse IDE"' author="author1" dateCreate="2016-12-12">
+                    <task>
+                        <theoryTask type="theory" name="Overview of Eclipse IDE" period="4"/>
+                    </task>
+                </course>
+
+                <course name='Курс "Основы языка Java"' author="author2" dateCreate="2016-12-12">
+                    <task>
+                        <theoryTask type="theory" name="Learning the Java Language Basics" period="12"/>
+                    </task>
+                    <task>
+                        <practiceTask type="practice" name="Practical Task" period="4"/>
+                    </task>
+                </course>
+
+                <course name='Курс "Язык Java - расширенные возможности"' author="author1" dateCreate="2016-12-12">
+                    <task>
+                        <theoryTask type="theory" name="Learning the Java Language advanced features " period="17"/>
+                    </task>
+                    <task>
+                        <practiceTask type="practice" name="Practical Task" period="16"/>
+                    </task>
+                </course>
+
+                <course name='Курс "Процесс производства программного обеспечения"' author="author1" dateCreate="2016-12-12">
+                    <task>
+                        <theoryTask type="theory" name="Mastering Microsoft Project" period="3"/>
+                    </task>
+                    <task>
+                        <practiceTask type="practice" name="MS Project Practical Task" period="8"/>
+                    </task>
+                    <task>
+                        <theoryTask type="theory" name="Software development process. Development team and its structure" period="12"/>
+                    </task>
+                </course>
+
+                <course name='Курс "Процесс разработки программного обеспечения"' author="author2" dateCreate="2016-12-12">
+                    <task>
+                        <practiceTask type="practice" name="Team Project" period="80"/>
+                    </task>
+                </course>
+            </planCourse>
+        </student>
+    </listStudents>
+</report>
