@@ -59,6 +59,9 @@ public class Student {
         this.program = program;
     }
 
+    public Student() {
+    }
+
     public Student(String fullName, String email, String region, String contractSigned, String startDate, Program program) {
         this.fullName = fullName;
         this.email = email;

@@ -59,6 +59,9 @@ public class Task {
         this.status = status;
     }
 
+    public Task() {
+    }
+
     public Task(String title, String author, String lastModified, int duration, String type, String status) {
         this.title = title;
         this.author = author;

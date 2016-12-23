@@ -52,6 +52,9 @@ public class Program {
         this.courses = courses;
     }
 
+    public Program() {
+    }
+
     public Program(String title, String author, String latsModified, int duration, ArrayList<Course> courses) {
         this.title = title;
         this.author = author;

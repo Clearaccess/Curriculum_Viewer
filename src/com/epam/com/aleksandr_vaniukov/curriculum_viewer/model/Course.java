@@ -52,6 +52,9 @@ public class Course {
         this.tasks = tasks;
     }
 
+    public Course() {
+    }
+
     public Course(String title, String author, String lastModified, int duration, ArrayList<Task> tasks) {
         this.title = title;
         this.author = author;
