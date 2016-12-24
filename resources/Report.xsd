@@ -12,7 +12,7 @@
 
     <xs:complexType name="theoryTaskType">
 
-        <xs:attribute name="type">
+        <xs:attribute name="type" use="required">
             <xs:simpleType>
                 <xs:restriction base="xs:string">
                     <xs:enumeration value="theory"/>
@@ -20,9 +20,9 @@
             </xs:simpleType>
         </xs:attribute>
 
-        <xs:attribute name="name" type="r:stringType"/>
+        <xs:attribute name="name" type="r:stringType" use="required"/>
 
-        <xs:attribute name="period" type="xs:nonNegativeInteger"/>
+        <xs:attribute name="period" type="xs:nonNegativeInteger" use="required"/>
 
         <xs:attribute name="mark" use="optional">
             <xs:simpleType>
@@ -50,7 +50,7 @@
 
     <xs:complexType name="practiceTaskType">
 
-        <xs:attribute name="type">
+        <xs:attribute name="type" use="required">
             <xs:simpleType>
                 <xs:restriction base="xs:string">
                     <xs:enumeration value="practice"/>
@@ -58,9 +58,9 @@
             </xs:simpleType>
         </xs:attribute>
 
-        <xs:attribute name="name" type="r:stringType"/>
+        <xs:attribute name="name" type="r:stringType" use="required"/>
 
-        <xs:attribute name="period" type="xs:nonNegativeInteger"/>
+        <xs:attribute name="period" type="xs:nonNegativeInteger" use="required"/>
 
         <xs:attribute name="mark" use="optional">
             <xs:simpleType>
@@ -90,11 +90,11 @@
 
     <xs:complexType name="descriptionStudentType">
 
-        <xs:attribute name="fullname" type="r:stringType"/>
+        <xs:attribute name="fullname" type="r:stringType" use="required"/>
         
-        <xs:attribute name="city" type="r:stringType"/>
+        <xs:attribute name="city" type="r:stringType" use="required"/>
         
-        <xs:attribute name="e-mail">
+        <xs:attribute name="e-mail" use="required">
             <xs:simpleType>
                 <xs:restriction base="xs:string">
                     <xs:pattern value=".{8}@.{8}\..{3}" />
@@ -102,9 +102,9 @@
             </xs:simpleType>
         </xs:attribute>
         
-        <xs:attribute name="dateStart" type="xs:date"/>
+        <xs:attribute name="dateStart" type="xs:date" use="required"/>
         
-        <xs:attribute name="signContract">
+        <xs:attribute name="signContract" use="required">
             <xs:simpleType>
                 <xs:restriction base="xs:string">
                     <xs:enumeration value="sign"/>
@@ -135,11 +135,11 @@
 
         </xs:sequence>
 
-        <xs:attribute name="name" type="r:stringType"/>
+        <xs:attribute name="name" type="r:stringType" use="required"/>
 
-        <xs:attribute name="author" type="r:stringType"/>
+        <xs:attribute name="author" type="r:stringType" use="required"/>
 
-        <xs:attribute name="dateCreate" type="xs:date"/>
+        <xs:attribute name="dateCreate" type="xs:date" use="required"/>
 
     </xs:complexType>
     
@@ -165,11 +165,11 @@
 
         </xs:sequence>
 
-        <xs:attribute name="name" type="r:stringType"/>
+        <xs:attribute name="name" type="r:stringType" use="required"/>
 
-        <xs:attribute name="author" type="r:stringType"/>
+        <xs:attribute name="author" type="r:stringType" use="required"/>
 
-        <xs:attribute name="dateCreate" type="xs:date"/>
+        <xs:attribute name="dateCreate" type="xs:date" use="required"/>
 
     </xs:complexType>
 

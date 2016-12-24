@@ -9,7 +9,7 @@ public class DataStudents {
     private ArrayList<Student>students;
 
     public DataStudents(){
-        this.students=new ArrayList<Student>();
+        this.students= new ArrayList<>();
     }
 
     public void addStudent(Student std){

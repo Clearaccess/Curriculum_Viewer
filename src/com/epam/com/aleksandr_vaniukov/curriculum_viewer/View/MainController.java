@@ -2,11 +2,13 @@ package com.epam.com.aleksandr_vaniukov.curriculum_viewer.View;
 
 
 import com.epam.com.aleksandr_vaniukov.curriculum_viewer.Main;
+import com.epam.com.aleksandr_vaniukov.curriculum_viewer.model.*;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
+import org.xml.sax.SAXException;
 
 import java.io.File;
 
@@ -17,16 +19,17 @@ public class MainController {
     @FXML
     private Label label;
     @FXML
-    private TreeView<String> treeView;
+    private TreeView<ListOfStudents> treeView;
     @FXML
     private void initialize() {
 
         //Init FileChooser
         fileChooser = new FileChooser();
         fileChooser.setTitle("Import from XML");
-        fileChooser.setInitialDirectory(new File("D:\\Projects\\Curriculum_Viewer\\resources"));
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")+"/resources"));
         FileChooser.ExtensionFilter filter=new FileChooser.ExtensionFilter("XML","*.xml");
         fileChooser.getExtensionFilters().add(filter);
+        new Student();
     }
 
     public void setMain(Main mainWin){
@@ -38,17 +41,8 @@ public class MainController {
         File file=fileChooser.showOpenDialog(mainWin.getPrimaryStage());
         if(file!=null){
             mainWin.setFile(file);
+            fillTreeView(mainWin.getData());
         }
-
-        TreeItem<String> rootItem=new TreeItem<>("Digits");
-        rootItem.setExpanded(true);
-
-        makeBranch("1",rootItem);
-        makeBranch("2",rootItem);
-        makeBranch("3",rootItem);
-
-        treeView.setRoot(rootItem);
-
     }
 
     @FXML
@@ -56,12 +50,68 @@ public class MainController {
         System.exit(0);
     }
 
+    public void printError(SAXException e){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("ERROR");
+        alert.setHeaderText("XML file isn't correct");
+        alert.setContentText(e.getMessage());
+
+        alert.showAndWait();
+    }
+
+    private void fillTreeView(DataStudents dataStudents){
+        TreeItem<ListOfStudents> rootItem=new TreeItem<>(new ListOfStudents() {
+            @Override
+            public String getText() {
+                return "";
+            }
+        });
+
+        rootItem.setExpanded(true);
+
+        for(int i=0;i<dataStudents.getStudents().size();i++){
+            addStudent(dataStudents.getStudents().get(i),rootItem);
+        }
+        treeView.setRoot(rootItem);
+        treeView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            label.setText(newValue.getValue().getText());
+        });
+    }
+
+    private void addStudent(Student student, TreeItem<ListOfStudents> rootItem){
+        TreeItem<ListOfStudents>item= new TreeItem<>(student);
+        addProgram(student.getProgram(),item);
+        rootItem.getChildren().add(item);
+    }
+
+    private void addProgram(Program program, TreeItem<ListOfStudents> rootItem){
+        TreeItem<ListOfStudents>item= new TreeItem<>(program);
+
+        for(int i=0;i<program.getCourses().size();i++){
+            addCourse(program.getCourses().get(i),item);
+        }
+
+        rootItem.getChildren().add(item);
+    }
+
+    private void addCourse(Course course, TreeItem<ListOfStudents> rootItem){
+        TreeItem<ListOfStudents>item= new TreeItem<>(course);
+
+        for(int i=0;i<course.getTasks().size();i++){
+            addTask(course.getTasks().get(i),item);
+        }
+
+        rootItem.getChildren().add(item);
+    }
+
+    private void addTask(Task task, TreeItem<ListOfStudents> rootItem){
+        TreeItem<ListOfStudents>item= new TreeItem<>(task);
+        rootItem.getChildren().add(item);
+    }
+
     private TreeItem<String> makeBranch(String title, TreeItem<String>rootItem){
-        TreeItem<String>item=new TreeItem<>(title);
-        item.setExpanded(true);
+        TreeItem<String>item= new TreeItem<>(title);
         rootItem.getChildren().add(item);
         return item;
     }
-
-
 }

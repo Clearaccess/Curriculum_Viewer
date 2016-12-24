@@ -1,5 +1,6 @@
 package com.epam.com.aleksandr_vaniukov.curriculum_viewer.Controller;
 
+import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -7,12 +8,13 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import com.epam.com.aleksandr_vaniukov.curriculum_viewer.model.Course;
-import com.epam.com.aleksandr_vaniukov.curriculum_viewer.model.DataStudents;
-import com.epam.com.aleksandr_vaniukov.curriculum_viewer.model.Program;
-import com.epam.com.aleksandr_vaniukov.curriculum_viewer.model.Student;
+import com.epam.com.aleksandr_vaniukov.curriculum_viewer.ParserErrorHandler;
+import com.epam.com.aleksandr_vaniukov.curriculum_viewer.model.*;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
+
+import static com.sun.org.apache.xerces.internal.jaxp.JAXPConstants.JAXP_SCHEMA_LANGUAGE;
+import static com.sun.org.apache.xerces.internal.jaxp.JAXPConstants.JAXP_SCHEMA_SOURCE;
 
 
 /**
@@ -38,8 +40,13 @@ public class Controller {
     private final String NAME="name";
     private final String AUTHOR="author";
     private final String DATE_CREATE="dateCreate";
+    private final String TYPE="type";
+    private final String PERIOD="period";
+    private final String STATUS="status";
 
+    private final String SCHEMA_PATH=System.getProperty("user.dir")+"/resources/Report.xsd";
     private File file;
+    private File schemaFile;
     private DataStudents dataStudents;
 
     public void setFile(File file){
@@ -47,28 +54,35 @@ public class Controller {
         this.dataStudents=new DataStudents();
     }
 
+    public DataStudents getData(){
+        return dataStudents;
+    }
+
     public void parseXML() throws IOException, SAXException, ParserConfigurationException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         factory.setNamespaceAware(true);
         factory.setValidating(true);
-        factory.setIgnoringComments(true);
         factory.setIgnoringElementContentWhitespace(true);
-        DocumentBuilder builder = factory.newDocumentBuilder();
-        Document doc = builder.parse(file);
-        NodeList nodeL=doc.getElementsByTagName("listStudents").item(0).getChildNodes();
-        System.out.println(nodeL.getLength());
-        /*
-        for (int i=0;i<nodeL.getLength();i++){
-            roundDOM(nodeL.item(i));
-        }*/
+        try {
+            factory.setAttribute(JAXP_SCHEMA_LANGUAGE, XMLConstants.W3C_XML_SCHEMA_NS_URI);
+        }
+        catch (IllegalArgumentException x) {
+            System.err.println("Error: JAXP DocumentBuilderFactory "
+                    + " attribute not recognized: " + JAXP_SCHEMA_LANGUAGE);
+            System.err.println("Check to see if parser conforms "
+                    + "to JAXP 1.2 spec.");
+        }
 
-        for(int i=0;i<nodeL.getLength();i++){
-            nodeL.item(i);
-            if(nodeL.item(i).getLocalName()!=null
-                    &&
-                    nodeL.item(i).getLocalName().equals(STUDENT)) {
-                dataStudents.addStudent(createStudent(nodeL.item(i), new Student()));
-            }
+        schemaFile=new File(SCHEMA_PATH);
+        factory.setAttribute(JAXP_SCHEMA_SOURCE, schemaFile);
+
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        builder.setErrorHandler(new ParserErrorHandler());
+        Document doc = builder.parse(file);
+
+        NodeList nodeList=doc.getElementsByTagName("listStudents").item(0).getChildNodes();
+        for(int i=0;i<nodeList.getLength();i++) {
+            dataStudents.addStudent(createStudent(nodeList.item(i), new Student()));
         }
 
     }
@@ -76,20 +90,22 @@ public class Controller {
     private Student createStudent(Node root, Student student){
 
         NodeList nodeL=root.getChildNodes();
-
         for(int i=0;i<nodeL.getLength();i++){
-            if(nodeL.item(i).getLocalName()!=null
-                    &&
-                    nodeL.item(i).getLocalName().equals(DESCRIPTION_STUDENT)){
-                    fillAttributesStudent(nodeL.item(i).getAttributes(),student);
-                student.setProgram(createProgram(root,new Program()));
+            if(nodeL.item(i).getLocalName().equals(DESCRIPTION_STUDENT)) {
+                fillAttributesStudent(nodeL.item(i), student);
+                continue;
+            }
+
+            if(nodeL.item(i).getLocalName().equals(DESCRIPTION_PROGRAM_STUDENT)){
+                student.setProgram(createProgram(nodeL.item(i), new Program()));
             }
         }
 
         return student;
     }
 
-    private void fillAttributesStudent(NamedNodeMap attributes,Student student) {
+    private void fillAttributesStudent(Node node,Student student) {
+        NamedNodeMap attributes=node.getAttributes();
         student.setFullName(attributes.getNamedItem(FULL_NAME).getTextContent());
         student.setRegion(attributes.getNamedItem(CITY).getTextContent());
         student.setEmail(attributes.getNamedItem(EMAIL).getTextContent());
@@ -99,19 +115,8 @@ public class Controller {
 
 
     private Program createProgram(Node root, Program program){
-        if(root==null) {
-            return program;
-        }
 
-        NodeList nodeL=root.getChildNodes();
-
-        for(int i=0;i<nodeL.getLength();i++){
-            if(nodeL.item(i).getLocalName()!=null
-                    &&
-                    nodeL.item(i).getLocalName().equals(DESCRIPTION_PROGRAM_STUDENT)){
-                fillAttributesProgram(nodeL.item(i),program);
-            }
-        }
+        fillAttributesProgram(root,program);
 
         return program;
     }
@@ -120,33 +125,26 @@ public class Controller {
         NamedNodeMap attributes=node.getAttributes();
         program.setTitle(attributes.getNamedItem(NAME).getTextContent());
         program.setAuthor(attributes.getNamedItem(AUTHOR).getTextContent());
-        program.setLatsModified(attributes.getNamedItem(DATE_CREATE).getTextContent());
-        program.setCourses(createCourses(node.getChildNodes()));
+        program.setLastModified(attributes.getNamedItem(DATE_CREATE).getTextContent());
+        program.setCourses(createCourses(node));
         program.setDuration(calculateDurationProgram(program));
     }
 
 
-    private ArrayList<Course> createCourses(NodeList nodeList){
-
+    private ArrayList<Course> createCourses(Node node){
+        NodeList nodeList=node.getChildNodes();
         ArrayList<Course> outCourses=new ArrayList<>();
         Node listCourses=null;
         for(int i=0;i<nodeList.getLength();i++){
-            if(nodeList.item(i).getLocalName()!=null
-                    &&
-                    nodeList.item(i).getLocalName().equals(LIST_COURSES)){
+            if(nodeList.item(i).getLocalName().equals(LIST_COURSES)){
                 listCourses=nodeList.item(i);
-                break;
             }
         }
 
         NodeList courses=listCourses.getChildNodes();
 
-        for(int i=0;i<courses.getLength();i++){
-            if(courses.item(i).getLocalName()!=null
-                    &&
-                    courses.item(i).getLocalName().equals(COURSE)){
-                outCourses.add(createCourse(courses.item(i), new Course()));
-            }
+        for(int i=0;i<courses.getLength();i++) {
+            outCourses.add(createCourse(courses.item(i), new Course()));
         }
 
         return outCourses;
@@ -154,69 +152,68 @@ public class Controller {
 
 
     private Course createCourse(Node root, Course course){
-
+        fillAttributesCourse(root,course);
+        return course;
     }
 
     private void fillAttributesCourse(Node node, Course course){
         NamedNodeMap attributes=node.getAttributes();
-        course.setTitle(attributes.getNamedItem());
-        course.setAuthor();
-        course.setLastModified();
-        course.setTasks(createTasks());
+        course.setTitle(attributes.getNamedItem(NAME).getTextContent());
+        course.setAuthor(attributes.getNamedItem(AUTHOR).getTextContent());
+        course.setLastModified(attributes.getNamedItem(DATE_CREATE).getTextContent());
+        course.setTasks(createTasks(node, course));
         course.setDuration(calculateDurationCourse(course));
     }
 
-
-
-    public void roundDOM(Node root){
-        if(root==null){
-            return;
+    private ArrayList<Task> createTasks(Node node, Course course){
+        NodeList nodeList=node.getChildNodes();
+        ArrayList<Task> outTasks=new ArrayList<>();
+        for(int i=0;i<nodeList.getLength();i++) {
+            outTasks.add(createTask(nodeList.item(i), course, new Task()));
         }
 
-        NodeList listNodes=root.getChildNodes();
-
-        System.out.println("Length: "+listNodes.getLength());
-
-        for(int i=0;i<listNodes.getLength();i++){
-            printlnCommon(listNodes.item(i));
-            System.out.println("###########");
-            roundDOM(listNodes.item(i));
-        }
+        return outTasks;
     }
 
-    private void printlnCommon(Node n) {
-        System.out.print(" nodeName=\"" + n.getNodeName() + "\"");
-
-        String val = n.getLocalName();
-        if (val != null) {
-            System.out.print(" local=\"" + val + "\"");
+    private Task createTask(Node node,Course course, Task task){
+        NodeList nodeList=node.getChildNodes();
+        for(int i=0;i<nodeList.getLength();i++) {
+            fillAttributesTask(nodeList.item(i), course, task);
         }
-
-        val=n.getTextContent();
-        if (val != null) {
-            System.out.print(" textContext=\"" + val + "\"");
-        }
-
-        val = n.getPrefix();
-
-        if (val != null) {
-            System.out.print(" pre=\"" + val + "\"");
-        }
-
-
-
-        val = n.getNodeValue();
-        if (val != null) {
-            System.out.print(" nodeValue=");
-            if (val.trim().equals("")) {
-                // Whitespace
-                System.out.print("[WS]");
-            }
-            else {
-                System.out.print("\"" + n.getNodeValue() + "\"");
-            }
-        }
-        System.out.println();
+        return task;
     }
 
+    private void fillAttributesTask(Node node, Course course, Task task){
+
+        NamedNodeMap attributes=node.getAttributes();
+
+        task.setType(attributes.getNamedItem(TYPE).getTextContent());
+        task.setTitle(attributes.getNamedItem(NAME).getTextContent());
+        task.setDuration(Integer.parseInt(attributes.getNamedItem(PERIOD).getTextContent()));
+        task.setAuthor(course.getAuthor());
+        task.setLastModified(course.getLastModified());
+        task.setStatus(attributes.getNamedItem(STATUS).getTextContent());
+    }
+
+    private int calculateDurationCourse(Course course){
+        int outValue=0;
+
+        ArrayList<Task> tasks=course.getTasks();
+        for (Task task : tasks) {
+            outValue += task.getDuration();
+        }
+
+        return outValue;
+    }
+
+    private int calculateDurationProgram(Program program){
+        int outValue=0;
+
+        ArrayList<Course> courses=program.getCourses();
+        for (Course course : courses) {
+            outValue += course.getDuration();
+        }
+
+        return outValue;
+    }
 }

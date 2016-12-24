@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                xmlns="file://Report.xsd"
-               xsi:noNamespaceSchemaLocation="Report.xsd">
+                xsi:schemaLocation="file://Report.xsd Report.xsd">
 
     <listTasks>
         <task>
